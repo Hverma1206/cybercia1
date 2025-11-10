@@ -1,56 +1,132 @@
 import React, { useState } from 'react';
+import { useAuth } from '../contexts/AuthContext';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { currentUser, logout, openLogin, openRegister } = useAuth();
 
   return (
-    <header className="sticky top-0 z-50 bg-cyber-dark bg-opacity-95 shadow-lg backdrop-blur-sm">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
-        
-        {/* Logo Area (Mimics CyberCIA Forge Seal/Badge style) */}
-        <div className="flex items-center space-x-3">
-          <div className="relative w-10 h-10 flex items-center justify-center border-2 border-blue-500 rounded-full bg-blue-500/10 shadow-lg">
-            {/* Inner Lock Icon (Mimics the center of the logo) */}
-            <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z"></path>
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 11V9a2 2 0 014 0v2"></path>
-            </svg>
-            {/* Small text/design on the seal */}
-            <span className="absolute top-0 text-[8px] text-blue-300 font-bold tracking-widest opacity-80">CYBER</span>
-            <span className="absolute bottom-0 text-[8px] text-blue-300 font-bold tracking-widest opacity-80">FORGE</span>
+    <header className="sticky top-0 z-50 bg-black/90 backdrop-blur-md border-b border-secondary-800 shadow-sm">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center h-16">
+          
+          {/* Logo */}
+          <div className="flex items-center space-x-3">
+            <div className="flex items-center justify-center w-9 h-9 bg-primary-600 rounded-lg">
+              <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+              </svg>
+            </div>
+            <div className="flex flex-col">
+              <span className="text-lg font-semibold text-white">Cyberciaforge</span>
+              <span className="text-xs text-secondary-400 -mt-1">Security Training</span>
+            </div>
           </div>
-          <span className="text-xl font-extrabold text-blue-400 tracking-wider">PRACTICAL HACKING</span>
-        </div>
-        
-        {/* Navigation Links (Hidden on small screens) */}
-        <nav className="hidden md:flex space-x-8 text-sm font-medium">
-          <a href="#home" className="text-gray-300 hover:text-blue-400 transition duration-150">Home</a>
-          <a href="#tracks" className="text-gray-300 hover:text-blue-400 transition duration-150">Learning Tracks</a>
-          <a href="#assistant" className="text-gray-300 hover:text-blue-400 transition duration-150">AI Assistant</a>
-          <a href="#labs" className="text-gray-300 hover:text-blue-400 transition duration-150">Practical Labs</a>
-          <a href="#contact" className="px-3 py-1 rounded-full bg-cyber-green text-white hover:bg-emerald-600 transition duration-150">Start Free</a>
-        </nav>
+          
+          {/* Navigation */}
+          <nav className="hidden md:flex items-center space-x-8">
+            <a href="#home" className="text-secondary-300 hover:text-white font-medium transition-colors">
+              Home
+            </a>
+            <a href="#tracks" className="text-secondary-300 hover:text-white font-medium transition-colors">
+              Courses
+            </a>
+            <a href="#assistant" className="text-secondary-300 hover:text-white font-medium transition-colors">
+              AI Assistant
+            </a>
+            <a href="#labs" className="text-secondary-300 hover:text-white font-medium transition-colors">
+              Labs
+            </a>
+          </nav>
 
-        {/* Mobile Menu Button */}
-        <button 
-          className="md:hidden text-gray-300 hover:text-blue-400 focus:outline-none"
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-        >
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-          </svg>
-        </button>
+          {/* Auth Section */}
+          <div className="flex items-center space-x-4">
+            {currentUser ? (
+              <>
+                <div className="hidden md:flex items-center space-x-3">
+                  <span className="text-sm text-secondary-300">{currentUser.email}</span>
+                  <button 
+                    onClick={() => logout()} 
+                    className="text-sm text-secondary-400 hover:text-white font-medium"
+                  >
+                    Sign out
+                  </button>
+                </div>
+              </>
+            ) : (
+              <>
+                <button 
+                  onClick={openLogin} 
+                  className="text-sm font-medium text-secondary-300 hover:text-white transition-colors"
+                >
+                  Sign in
+                </button>
+                <button 
+                  onClick={openRegister} 
+                  className="btn-primary text-sm"
+                >
+                  Get started
+                </button>
+              </>
+            )}
+            
+            {/* Mobile menu button */}
+            <button 
+              className="md:hidden p-2 text-secondary-400 hover:text-secondary-600"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M6 18h12"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
       </div>
       
       {/* Mobile Menu */}
       {isMenuOpen && (
-        <div className="md:hidden bg-cyber-dark border-t border-blue-900/50">
-          <div className="px-4 py-2 space-y-2">
-            <a href="#home" className="block text-gray-300 hover:text-blue-400 transition duration-150 py-2">Home</a>
-            <a href="#tracks" className="block text-gray-300 hover:text-blue-400 transition duration-150 py-2">Learning Tracks</a>
-            <a href="#assistant" className="block text-gray-300 hover:text-blue-400 transition duration-150 py-2">AI Assistant</a>
-            <a href="#labs" className="block text-gray-300 hover:text-blue-400 transition duration-150 py-2">Practical Labs</a>
-            <a href="#contact" className="block px-3 py-2 mt-2 rounded-full bg-cyber-green text-white hover:bg-emerald-600 transition duration-150 text-center">Start Free</a>
+        <div className="md:hidden border-t border-secondary-200 bg-white">
+          <div className="px-4 py-4 space-y-3">
+            <a href="#home" className="block text-secondary-600 hover:text-primary-600 font-medium py-2">
+              Home
+            </a>
+            <a href="#tracks" className="block text-secondary-600 hover:text-primary-600 font-medium py-2">
+              Courses
+            </a>
+            <a href="#assistant" className="block text-secondary-600 hover:text-primary-600 font-medium py-2">
+              AI Assistant
+            </a>
+            <a href="#labs" className="block text-secondary-600 hover:text-primary-600 font-medium py-2">
+              Labs
+            </a>
+            
+            {/* Mobile auth */}
+            {currentUser ? (
+              <div className="pt-4 border-t border-secondary-200">
+                <div className="text-sm text-secondary-600 mb-2">{currentUser.email}</div>
+                <button 
+                  onClick={() => logout()} 
+                  className="text-sm text-secondary-500 hover:text-secondary-700"
+                >
+                  Sign out
+                </button>
+              </div>
+            ) : (
+              <div className="pt-4 border-t border-secondary-200 space-y-3">
+                <button 
+                  onClick={openLogin} 
+                  className="block w-full text-left text-secondary-600 font-medium py-2"
+                >
+                  Sign in
+                </button>
+                <button 
+                  onClick={openRegister} 
+                  className="btn-primary w-full justify-center"
+                >
+                  Get started
+                </button>
+              </div>
+            )}
           </div>
         </div>
       )}

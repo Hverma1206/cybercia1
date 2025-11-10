@@ -138,6 +138,68 @@ The app uses a custom color palette defined in `tailwind.config.js`:
 - **HTTPS**: Always use HTTPS in production
 - **Rate Limiting**: Be mindful of API rate limits
 
+## Authentication (Firebase)
+
+This project includes authentication via Firebase Authentication supporting:
+- **Email/Password** authentication
+- **Google Sign-In** with popup
+
+### Firebase Setup
+
+1. **Create Firebase Project:**
+   - Go to [Firebase Console](https://console.firebase.google.com/)
+   - Create a new project or use existing one
+
+2. **Enable Authentication Methods:**
+   - In Firebase Console, go to Authentication > Sign-in method
+   - Enable **Email/Password**
+   - Enable **Google** (add your domain to authorized domains)
+
+3. **Get Firebase Config:**
+   - Go to Project Settings > General > Your apps
+   - Add a web app or use existing config
+   - Copy the config object values
+
+4. **Add Firebase environment variables to your `.env` file:**
+
+```
+REACT_APP_FIREBASE_API_KEY=your-api-key
+REACT_APP_FIREBASE_AUTH_DOMAIN=your-project.firebaseapp.com
+REACT_APP_FIREBASE_PROJECT_ID=your-project-id
+REACT_APP_FIREBASE_STORAGE_BUCKET=your-project.appspot.com
+REACT_APP_FIREBASE_MESSAGING_SENDER_ID=123456789
+REACT_APP_FIREBASE_APP_ID=1:123456789:web:abcdef123456
+```
+
+5. **Install dependencies** (already included):
+
+```bash
+npm install firebase
+```
+
+6. **Start the dev server:**
+
+```bash
+npm start
+```
+
+### Authentication Features
+
+- **Header Authentication:** Login and Register buttons in the navigation
+- **Multiple Sign-In Options:** Email/Password and Google
+- **Protected Content:** AI Assistant requires authentication
+- **User Display:** Shows logged-in user email and logout option
+- **Modal Interface:** Clean overlay forms for authentication
+- **Google Integration:** One-click Google sign-in with branded button
+
+### Usage
+
+Users can authenticate using either method:
+1. **Email/Password:** Traditional registration and login
+2. **Google:** One-click sign-in using Google account
+
+The AI Assistant section is protected and only shows to authenticated users.
+
 ## License
 
 This project is for educational purposes. Please ensure you have proper authorization for any cybersecurity tools and techniques demonstrated.

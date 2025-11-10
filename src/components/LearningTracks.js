@@ -4,84 +4,155 @@ const LearningTracks = () => {
   const tracks = [
     {
       id: 1,
-      title: "1. Core Fundamentals",
-      description: "Master Linux, Networking, and Python scripting. The essential groundwork for any practical cybersecurity role.",
-      borderColor: "border-blue-500",
-      bgColor: "bg-blue-500/20",
-      textColor: "text-blue-400",
-      linkText: "Start Basic Track",
-      linkHover: "hover:text-blue-300",
+      title: "Fundamentals",
+      subtitle: "Security Foundations",
+      description: "Master essential security concepts, Linux systems, networking protocols, and Python scripting. Build the foundation every cybersecurity professional needs.",
+      duration: "6-8 weeks",
+      level: "Beginner",
+      skills: ["Linux Administration", "Network Security", "Python Scripting", "Security Frameworks"],
+      color: "primary",
       icon: (
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
         </svg>
       )
     },
     {
       id: 2,
-      title: "2. Ethical Hacking & Pentesting",
-      description: "Dive into real-world scenarios. Practice vulnerability scanning, web application attacks (OWASP Top 10), and reporting.",
-      borderColor: "border-cyber-green",
-      bgColor: "bg-cyber-green/20",
-      textColor: "text-cyber-green",
-      linkText: "View Live Labs",
-      linkHover: "hover:text-emerald-300",
+      title: "Ethical Hacking",
+      subtitle: "Penetration Testing",
+      description: "Learn professional penetration testing methodologies. Practice on real-world scenarios including web applications, networks, and infrastructure.",
+      duration: "10-12 weeks",
+      level: "Intermediate",
+      skills: ["Vulnerability Assessment", "Web App Testing", "Network Pentesting", "Reporting"],
+      color: "accent",
       icon: (
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
         </svg>
       )
     },
     {
       id: 3,
-      title: "3. Advanced Exploitation & Defense",
-      description: "Explore advanced topics: Reverse engineering, malware analysis, buffer overflows, and building custom security tools.",
-      borderColor: "border-red-500",
-      bgColor: "bg-red-500/20",
-      textColor: "text-red-400",
-      linkText: "Access Advanced Modules",
-      linkHover: "hover:text-red-300",
+      title: "Advanced Security",
+      subtitle: "Threat Intelligence & Defense",
+      description: "Dive deep into advanced topics: malware analysis, reverse engineering, threat hunting, and building enterprise security programs.",
+      duration: "12-16 weeks",
+      level: "Advanced",
+      skills: ["Malware Analysis", "Reverse Engineering", "Threat Hunting", "Security Architecture"],
+      color: "secondary",
       icon: (
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
         </svg>
       )
     }
   ];
 
+  const getColorClasses = (color) => {
+    const colors = {
+      primary: {
+        bg: 'bg-secondary-900',
+        border: 'border-secondary-700',
+        iconBg: 'bg-primary-600',
+        text: 'text-primary-400',
+        badge: 'bg-secondary-800 text-primary-300'
+      },
+      accent: {
+        bg: 'bg-secondary-900',
+        border: 'border-secondary-700',
+        iconBg: 'bg-accent-600',
+        text: 'text-accent-400',
+        badge: 'bg-secondary-800 text-accent-300'
+      },
+      secondary: {
+        bg: 'bg-secondary-900',
+        border: 'border-secondary-700',
+        iconBg: 'bg-secondary-600',
+        text: 'text-secondary-400',
+        badge: 'bg-secondary-800 text-secondary-300'
+      }
+    };
+    return colors[color];
+  };
+
   return (
-    <section id="tracks" className="py-20 bg-cyber-dark">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-4xl font-bold text-center mb-16 text-white">
-          Our <span className="text-cyber-blue">Core</span> Learning Tracks
-        </h2>
+    <section id="tracks" className="py-24 bg-black">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-2xl text-center mb-16">
+          <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+            Learning Paths
+          </h2>
+          <p className="mt-6 text-lg leading-8 text-secondary-300">
+            Master cybersecurity through structured, hands-on learning paths designed 
+            by industry experts. Progress from fundamentals to advanced techniques.
+          </p>
+        </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-          {tracks.map((track) => (
-            <div 
-              key={track.id}
-              className={`p-6 bg-gray-800 rounded-xl shadow-2xl border-t-4 ${track.borderColor} transform hover:scale-[1.02] transition duration-300 cursor-pointer`}
-            >
-              <div className="flex items-center mb-4">
-                <span className={`p-3 ${track.bgColor} ${track.textColor} rounded-full`}>
-                  {track.icon}
-                </span>
-                <h3 className="ml-4 text-xl font-semibold text-white">{track.title}</h3>
-              </div>
-              <p className="text-gray-400 mb-4">
-                {track.description}
-              </p>
-              <button 
-                className={`${track.textColor} font-medium ${track.linkHover} flex items-center`}
-                onClick={() => alert(`Coming soon: ${track.linkText}`)}
-              >
-                {track.linkText}
-                <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
-                </svg>
-              </button>
-            </div>
-          ))}
+        <div className="mx-auto max-w-2xl lg:max-w-none">
+          <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
+            {tracks.map((track, index) => {
+              const colors = getColorClasses(track.color);
+              return (
+                <div 
+                  key={track.id} 
+                  className={`card group relative overflow-hidden ${colors.bg} ${colors.border}`}
+                >
+                  <div className="p-8">
+                    <div className={`inline-flex h-12 w-12 items-center justify-center rounded-xl ${colors.iconBg} mb-6`}>
+                      <div className="text-white">
+                        {track.icon}
+                      </div>
+                    </div>
+                    
+                    <div className="mb-4">
+                      <div className="flex items-center justify-between mb-2">
+                        <h3 className="text-xl font-semibold text-white">
+                          {track.title}
+                        </h3>
+                        <span className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium ${colors.badge}`}>
+                          {track.level}
+                        </span>
+                      </div>
+                      <p className={`text-sm font-medium ${colors.text}`}>
+                        {track.subtitle}
+                      </p>
+                    </div>
+                    
+                    <p className="text-secondary-300 mb-6 leading-relaxed">
+                      {track.description}
+                    </p>
+                    
+                    <div className="mb-6">
+                      <div className="text-sm text-secondary-400 mb-2">Duration: {track.duration}</div>
+                      <div className="text-sm text-secondary-400">Key Skills:</div>
+                      <div className="flex flex-wrap gap-2 mt-2">
+                        {track.skills.map((skill, skillIndex) => (
+                          <span 
+                            key={skillIndex}
+                            className="inline-flex items-center rounded-md bg-secondary-800 px-2 py-1 text-xs font-medium text-secondary-300"
+                          >
+                            {skill}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                    
+                    <button 
+                      className={`inline-flex items-center font-semibold ${colors.text} hover:${colors.text}/80 transition-colors`}
+                      onClick={() => alert(`Starting ${track.title} course...`)}
+                    >
+                      Start Learning
+                      <svg className="ml-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
     </section>
