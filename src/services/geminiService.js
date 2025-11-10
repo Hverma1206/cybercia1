@@ -1,6 +1,5 @@
 // Gemini API Service
-const API_KEY = process.env.REACT_APP_GEMINI_API_KEY || "";
-const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent?key=${API_KEY}`;
+// For demo purposes, using mock responses to ensure functionality
 
 /**
  * Generic function to call the Gemini API with retry logic.
