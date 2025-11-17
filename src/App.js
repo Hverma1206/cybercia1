@@ -44,7 +44,6 @@ function App() {
           <CallToAction />
         </main>
         <Footer />
-        {/* Global modals for login/register */}
         {showLogin && <Login />}
         {showRegister && <Register />}
       </div>
