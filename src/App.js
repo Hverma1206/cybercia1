@@ -20,7 +20,6 @@ function App() {
         <main>
           <Hero />
           <LearningTracks />
-          {/* Only show AI Assistant to authenticated users */}
           {currentUser ? (
             <AIAssistant />
           ) : (
